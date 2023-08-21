@@ -32,7 +32,7 @@
 
                         <div class="drop_atendimentos">
                             <ul>
-                                <li><a href="#">Cadastrar</a></li>
+                                <li><a href="/call/search">Cadastrar</a></li>
                                 <li><a href="#">Atendimento Local</a></li>
                                 <li><a href="#">Atendimento Externo</a></li>
                                 <li><a href="#">Aguardando</a></li>
@@ -45,7 +45,7 @@
 
 
                     <li>
-                        <a href="">Clientes <i class="fas fa-caret-down"></i></a>
+                        <a href="/client/search">Clientes <i class="fas fa-caret-down"></i></a>
 
                         <div class="drop_clientes">
                             <ul>
@@ -57,7 +57,7 @@
                     
                     @if (Session::get('is_admin'))   
                     <li>
-                        <a href="">Usuários <i class="fas fa-caret-down"></i></a>
+                        <a href="/user/search">Usuários <i class="fas fa-caret-down"></i></a>
                         <div class="drop_usuarios">
                             <ul>
                                 <li><a href="/user/add">Cadastrar</a></li>
@@ -71,7 +71,10 @@
 
                 <div class="sair">
                     <img src="/img/img_user.png" alt="User">
-                    <h5>Seja bem-vindo,<br> Gabriel </h5>
+                    @if (Session::get('name'))
+                    <h5>Seja bem-vindo,<br>{{ session('name') }} </h5>
+                    @endif
+                   
 
                     <ul>
                         <li>

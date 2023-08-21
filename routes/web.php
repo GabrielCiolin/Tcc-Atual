@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CallController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -43,7 +44,6 @@ Route::middleware('authentication')->controller(ClientController::class)->group(
     Route::get('/client/delete/{id}', 'destroy'); // Cria a rota de deleção de cliente como parâmetro o ID
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
-
     Route::middleware('admin')->controller(UserController::class)->group(function () {
 
         Route::get('/user/search', 'index')->name('user.index');
@@ -52,10 +52,17 @@ Route::middleware('authentication')->controller(ClientController::class)->group(
         Route::post('/user', 'store');
 
         Route::get('/user/edit/{id}', 'edit');
-        Route::put('/user/update/{id}', 'update'); 
+        Route::put('/user/update/{id}', 'update');
 
-        Route::get('/user/delete/{id}', 'destroy'); 
+        Route::get('/user/delete/{id}', 'destroy');
     });
+
+    Route::get('/call/index', 'index');
+    Route::get('/call/search', [CallController::class, 'search']);
+    Route::get('/call/add', [CallController::class, 'create']);
+    Route::get('/call/historic', [CallController::class, 'list']);
+
+
 });
 
 

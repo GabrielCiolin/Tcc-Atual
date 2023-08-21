@@ -63,7 +63,6 @@ class ClientController extends Controller
     }
 
 
-// ClientController.php
 
 public function update(Request $request, $id)
 {
