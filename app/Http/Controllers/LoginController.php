@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -14,12 +15,14 @@ class LoginController extends Controller
 
         if ($request->get('erro') == 1) {
             $erro = 'Usuário ou senha inválidos!';
+            Session::flash('erro', $erro);
         }
 
         if ($request->get('erro') == 2) {
             $erro = 'Usuário precisa realizar o login para acessar a página!';
+            Session::flash('erro', $erro);
         }
-        return view('login', ['title' => 'Login', 'erro' => $erro]);
+        return view('login', ['title' => 'Login']);
     }
 
     public function authenticate(Request $request)
@@ -43,21 +46,24 @@ class LoginController extends Controller
 
         $exist = $user->where('email', $email)->get()->first();
 
-        $validCredentials = Hash::check($password, $exist->password);
-
-        if ($validCredentials) {
-
-            session([
-                'name' => $exist->first_name,
-                'email' => $exist->email,
-                'is_admin' => $exist->is_admin
-            ]);
-
-
-
+        if ($exist) { // Verifique se o objeto $exist não é nulo
+            $validCredentials = Hash::check($password, $exist->password);
+        
+            if ($validCredentials) {
+                session([
+                    'name' => $exist->first_name,
+                    'email' => $exist->email,
+                    'user_id'=>$exist->id,
+                    'is_admin' => $exist->is_admin,
+                ]);
+        
                 return redirect()->route('client.index');
+            } else {
+                return redirect()->route('login.index', ['erro' => 1])->with('error', 'Usuário ou senha inválidos!');
+                ;
+            }
         } else {
-            return redirect()->route('login.index', ['erro' => 1]);
+            return redirect()->route('login.index', ['erro' => 2])->with('error', 'Usuário ou senha inválidos!');
         }
     }
 

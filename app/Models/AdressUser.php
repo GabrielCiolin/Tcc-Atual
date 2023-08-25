@@ -13,6 +13,11 @@ class AdressUser extends Model
 
     protected $guarded = [];
 
+    public $timestamps = true;
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
     public function User()
     {
         return $this->belongsTo(User::class, 'user_id');

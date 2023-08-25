@@ -17,11 +17,14 @@ main {
 
 header{
     margin-top: 6rem;
+    z-index: 1;
+
 }
 
 header,
 footer {
     background: #1166cf;
+    z-index: 1;
 }
 
 .container {
@@ -36,6 +39,7 @@ footer {
     background: #1166cf;
     width: 100%;
     top: 0;
+    z-index: 99;
 
 }
 
@@ -236,6 +240,8 @@ footer p {
     border-radius: 5px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     font-size: 18px;
+    padding: 2rem;
+
 }
 
 .title {
@@ -247,6 +253,13 @@ footer p {
 label {
     display: block;
     margin-top: 5px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.call_form{
+    display: block;
+    margin-top: 10px;
     padding-top: 10px;
     font-weight: bold;
 }
@@ -355,4 +368,43 @@ button:hover {
     color: #007bff;
     font-weight: bold;
 
+}
+
+hr{
+    margin: 15px 0px 15px 0px;
+    border-color: #007bff;
+}
+
+/*Custom da Text-Area*/
+.textarea{
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* Permite redimensionamento vertical */
+    font-size: 14px;
+}
+
+.form-group textarea{
+    width: 100%;
+}
+
+.form-group .nice-select{
+    max-width: fit-content;
+}
+
+/* Estilo quando a textarea está em foco (selecionada) */
+.textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+}
+
+.form-group{
+    max-width: 60ch;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
 }

@@ -51,8 +51,8 @@
                                     N/A
                                 @endif
                             <td class="btn-container">
-                                <a href="/call/add">Adicionar</a>
-                                <a href="/call/historic/{{ $result->id }}">Histórico</a>
+                                <a href="/call/add?result_id={{ $result->id }}&type={{class_basename($result)}}">Adicionar</a>
+                                <a href="/call/historic?result_id={{ $result->id }}&{{}}">Histórico</a>
 
                             </td>
                         </tr>

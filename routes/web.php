@@ -19,16 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [LoginController::class, 'index'])->name('login.login');
+
 
 Route::controller(LoginController::class)->group(function () {
-    Route::post('/login', 'authenticate')->name('login');
     Route::get('/login/{erro?}', 'index')->name('login.index');
-    // Route::get('/logout', 'logout')->name('login.logout');
-
-
-
+    Route::post('/login', 'authenticate')->name('login');
 });
+
+Route::get('/', [LoginController::class, 'index'])->name('login.login');
 
 
 Route::middleware('authentication')->controller(ClientController::class)->group(function () {
@@ -57,29 +55,9 @@ Route::middleware('authentication')->controller(ClientController::class)->group(
         Route::get('/user/delete/{id}', 'destroy');
     });
 
-    Route::get('/call/index', 'index');
+    Route::get('/call/index', [CallController::class, 'index']);
     Route::get('/call/search', [CallController::class, 'search']);
     Route::get('/call/add', [CallController::class, 'create']);
+    Route::post('/call', [CallController::class, 'store']);
     Route::get('/call/historic', [CallController::class, 'list']);
-
-
 });
-
-
-
-
-
-// Route::controller(ClientController::class)->group(function () {
-
-//     Route::get('/client/search', 'index');
-    
-//     Route::get('/client/add', 'create'); //criar um cliente
-//     Route::post('/client', 'store'); // enviar o post
-  
-//     Route::get('/client/edit/{id}', 'edit'); //para editar um cliente
-//     Route::put('/client/update/{id}', 'update'); // para subir os dados atualizados no banco
-
-//     Route::get('/client/delete/{id}', 'destroy'); // Cria a rota de deleção de cliente como parâmetro o ID
-
-
-// });

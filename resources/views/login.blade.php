@@ -9,6 +9,20 @@
 
     <link rel="stylesheet" href="/css/login.css">
 
+    <style>
+        .alert {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .alert .close {
+        cursor: pointer;
+    }
+    </style>
 
 </head>
 
@@ -21,8 +35,8 @@
             <img src="/img/img_login.jpg" alt="">
         </div>
 
-        <div class="parte_direita">
-            <div class="card">
+        {{-- <div class="parte_direita"> --}}
+            {{-- <div class="card">
                 <h1>G.F Sistemas</h1>
                 <form class="dados_login" action= {{route('login')}} method="POST">
                     @csrf
@@ -31,11 +45,43 @@
                     <input type="password" name="password" id="password" placeholder=" Insira sua senha">
                     {{$errors->has('password') ? $errors->first('password') : ''}}
                     <button type="submit">Entrar</button>
+                    {{isset($errors) && $errors != '' ? $errors : ''}}
                 </form>
                 
 
+            </div> --}}
+            <div class="parte_direita">
+                <div class="card">
+                    <h1>G.F Sistemas</h1>
+                    @if (session('error'))
+                    <div class="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                    <form class="dados_login" action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <input type="email" value="{{ old('email') }}" name="email" id="email" class="form-control" placeholder="Insira seu E-mail">
+                            @if ($errors->has('email'))
+                                <div class="alert">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Insira sua senha">
+                            @if ($errors->has('password'))
+                                <div class="alert">
+                                    {{ $errors->first('password') }}
+                                </div>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn">Entrar</button>
+                    </form>
+                </div>
             </div>
-            {{-- {{isset($erro) && $erro != '' ? $erro : ''}} --}}
+
+
         </div>
     </div>
 

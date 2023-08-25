@@ -9,7 +9,15 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="/css/tcc.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/nice-select2.css">
+
+
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> --}}
+
 
 
 </head>
@@ -54,17 +62,17 @@
                             </ul>
                         </div>
                     </li>
-                    
-                    @if (Session::get('is_admin'))   
-                    <li>
-                        <a href="/user/search">Usuários <i class="fas fa-caret-down"></i></a>
-                        <div class="drop_usuarios">
-                            <ul>
-                                <li><a href="/user/add">Cadastrar</a></li>
-                                <li><a href="/user/search">Buscar</a></li>
-                            </ul>
-                        </div>
-                    </li>    
+
+                    @if (Session::get('is_admin'))
+                        <li>
+                            <a href="/user/search">Usuários <i class="fas fa-caret-down"></i></a>
+                            <div class="drop_usuarios">
+                                <ul>
+                                    <li><a href="/user/add">Cadastrar</a></li>
+                                    <li><a href="/user/search">Buscar</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     @endif
 
                 </ul>
@@ -72,13 +80,13 @@
                 <div class="sair">
                     <img src="/img/img_user.png" alt="User">
                     @if (Session::get('name'))
-                    <h5>Seja bem-vindo,<br>{{ session('name') }} </h5>
+                        <h5>Seja bem-vindo,<br>{{ session('name') }} </h5>
                     @endif
-                   
+
 
                     <ul>
                         <li>
-                            <a href="{{route('login.logout')}}">Sair</a>
+                            <a href="{{ route('login.logout') }}">Sair</a>
                         </li>
                     </ul>
 
@@ -90,14 +98,18 @@
 
     <main>
         <div class="container">
-        @yield('content')
+            @yield('content')
         </div>
     </main>
 
     <footer>
         <div class="container">
-        <p>G.F Sistemas &copy; 2023</p>
+            <p>G.F Sistemas &copy; 2023</p>
         </div>
+
+        <script src="/js/nice-select2.js"></script>
+        @yield('scripts');
+
     </footer>
 
 </body>

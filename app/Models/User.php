@@ -30,11 +30,19 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'rg',
+        'cpf',
+        'contact',
         'email',
         'password', 
         'is_admin'
     ];
-    
+
+    public $timestamps = true;
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
     protected $table = 'users';
 
 
@@ -60,7 +68,6 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
-
     
     public function address()
     {

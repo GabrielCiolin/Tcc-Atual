@@ -13,6 +13,11 @@ class AdressClient extends Model
 
     protected $guarded = [];
 
+    public $timestamps = true;
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id');
