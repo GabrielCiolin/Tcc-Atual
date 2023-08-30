@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Client;
 use Illuminate\Support\Str;
+use App\Models\AdressClient;
+use App\Models\AdressUser;
 
 use function PHPSTORM_META\type;
 
@@ -15,6 +17,10 @@ class CallController extends Controller
 
     public function index()
     {
+        $calls = Call::all();
+        $calls = Call::with(['client.address'])->get();
+        return view('/calls/listCall', compact('calls')); // Passar os chamados para a viewPassar os chamados para a view
+
     }
 
     public function create(Request $request)
@@ -45,20 +51,19 @@ class CallController extends Controller
             'description_call' => 'required|string',
             'comments' => 'nullable|string',
         ];
-        
+
         $isUser = $request->get('result_type') == Str::of(User::class)->classBasename();
         $isClient = $request->get('result_type') == Str::of(Client::class)->classBasename();
 
-        if($isUser){
-            $rules['client_id']= 'required|exists:users,id';
-        }
-        elseif($isClient){
-            $rules['client_id']= 'required|exists:clients,id';
+        if ($isUser) {
+            $rules['client_id'] = 'required|exists:users,id';
+        } elseif ($isClient) {
+            $rules['client_id'] = 'required|exists:clients,id';
         }
 
 
         $validatedData = $request->validate($rules);
-        
+
         $call = new Call();
         $call->user_id = $validatedData['user_id'];
         $call->client_id = $validatedData['client_id'];
@@ -71,8 +76,7 @@ class CallController extends Controller
 
         $call->save();
 
-           return redirect('/user/add');
-
+        return redirect('/call/index');
     }
 
 
@@ -101,5 +105,20 @@ class CallController extends Controller
     {
         $users = User::all();
         return view('/calls/addCall', ['users' => $users]);
+    }
+
+    public function addComment(Request $request, $id)
+    {
+        $call = Call::findOrFail($id);
+
+        $request->validate([
+            'comments' => 'required|string',
+        ]);
+
+        $call->comments .= "\n" . $request->comments; // Acrescenta as novas observações
+
+        $call->save();
+
+        return redirect()->back()->with('msg', 'Observações adicionadas com sucesso!');
     }
 }

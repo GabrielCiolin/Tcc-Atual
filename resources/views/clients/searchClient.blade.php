@@ -5,6 +5,27 @@
 @section('content')
 
 <h1 class="title">Busque por um cliente:</h1>
+@if(session('msg'))
+    <div class="alert-success" id="success-alert">
+        {{ session('msg') }}
+    </div>
+    
+@endif
+
+@if(session('msg-danger'))
+    <div class="alert-danger" id="alert-danger">
+        {{ session('msg-danger') }}
+    </div>
+    
+@endif
+
+@if(session('msg-success'))
+    <div class="alert-success" id="success-alert">
+        {{ session('msg-success') }}
+    </div>
+    
+@endif
+
 <form action="/client/search" method="GET">
     <input type="text" id="search" name="search" placeholder="Insira o nome do cliente">
 </form>
@@ -30,7 +51,7 @@
                 <td>{{$client->rg}}</td>
                 <td>{{$client->cpf}}</td>
                 <td>{{$client->contact}}</td>
-                <td>{{date('d/m/Y', strtotime($client->date))}}</td>
+                <td>{{\Carbon\Carbon::parse($client->date)->format('d/m/Y') }}</td>
                 <td>
                     @if($client->address->isNotEmpty())
                         @foreach ($client->address as $address)
@@ -73,5 +94,21 @@
     </table>
 </div>
 
+<script>
+@if(session('msg-success'))
+        setTimeout(function() {
+            document.getElementById("success-alert").style.display = 'none';
+        }, 3000);
+    @endif
 
+    setTimeout(function() {
+        document.getElementById("success-alert").style.display = 'none';
+    }, 3000);
+
+    @if(session('msg-danger'))
+        setTimeout(function() {
+            document.getElementById("alert-danger").style.display = 'none';
+        }, 3000);
+    @endif
+</script>
 @endsection

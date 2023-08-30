@@ -7,6 +7,27 @@
 
 
 <h1 class="title">Busque por um Usuário:</h1>
+
+@if(session('msg'))
+    <div class="alert-success" id="success-alert">
+        {{ session('msg') }}
+    </div>
+@endif
+
+@if(session('msg-danger'))
+    <div class="alert-danger" id="alert-danger">
+        {{ session('msg-danger') }}
+    </div>
+    
+@endif
+
+@if(session('msg-success'))
+    <div class="alert-success" id="success-alert">
+        {{ session('msg-success') }}
+    </div>
+    
+@endif
+
 <form action="/user/search" method="GET">
     <input type="text" id="search" name="search" placeholder="Insira o nome do usuário">
 </form>
@@ -39,7 +60,7 @@
                 <td>{{$user->email}}</td>
                 <td>{{$roles[$user->is_admin]}}</td>
 
-                <td>{{date('d/m/Y', strtotime($user->date))}}</td>
+                <td>{{ \Carbon\Carbon::parse($user->date)->format('d/m/Y') }}</td>
 
                 <td>
                     @if($user->address->isNotEmpty())
@@ -83,5 +104,23 @@
     </table>
 </div>
 
+<script>
+  
+  @if(session('msg-success'))
+        setTimeout(function() {
+            document.getElementById("success-alert").style.display = 'none';
+        }, 3000);
+    @endif
 
+    setTimeout(function() {
+        document.getElementById("success-alert").style.display = 'none';
+    }, 3000);
+
+    @if(session('msg-danger'))
+        setTimeout(function() {
+            document.getElementById("alert-danger").style.display = 'none';
+        }, 3000);
+    @endif
+</script>
 @endsection
+

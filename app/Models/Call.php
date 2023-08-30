@@ -10,9 +10,18 @@ class Call extends Model
 {
     use HasFactory;
 
+    const INTERNAL = 'internal';
+    const EXTERNAL = 'external';
+    
+    const ROLES = [
+        self::INTERNAL => 'Interno',
+        self::EXTERNAL => 'Externo',
+    ];
+
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public $timestamps = true;
@@ -35,11 +44,12 @@ class Call extends Model
 
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
     public function technician()
     {
         return $this->belongsTo(User::class, 'technician_id');
     }
+
 }

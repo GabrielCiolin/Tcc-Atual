@@ -57,7 +57,7 @@ class LoginController extends Controller
                     'is_admin' => $exist->is_admin,
                 ]);
         
-                return redirect()->route('client.index');
+                return redirect()->route('call.index');
             } else {
                 return redirect()->route('login.index', ['erro' => 1])->with('error', 'Usuário ou senha inválidos!');
                 ;

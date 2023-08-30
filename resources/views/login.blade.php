@@ -35,21 +35,6 @@
             <img src="/img/img_login.jpg" alt="">
         </div>
 
-        {{-- <div class="parte_direita"> --}}
-            {{-- <div class="card">
-                <h1>G.F Sistemas</h1>
-                <form class="dados_login" action= {{route('login')}} method="POST">
-                    @csrf
-                    <input type="email" value="{{old('email')}}" name="email" id="email" placeholder="Insira seu E-mail">
-                    {{$errors->has('email') ? $errors->first('email') : ''}}
-                    <input type="password" name="password" id="password" placeholder=" Insira sua senha">
-                    {{$errors->has('password') ? $errors->first('password') : ''}}
-                    <button type="submit">Entrar</button>
-                    {{isset($errors) && $errors != '' ? $errors : ''}}
-                </form>
-                
-
-            </div> --}}
             <div class="parte_direita">
                 <div class="card">
                     <h1>G.F Sistemas</h1>

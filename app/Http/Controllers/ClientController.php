@@ -52,7 +52,7 @@ class ClientController extends Controller
 
         $client->address()->save($address);
 
-        return redirect('/client/search');
+        return redirect('/client/search')->with('msg-success', 'Cliente cadastrado com sucesso!');;
     }
 
     public function edit($id)
@@ -111,7 +111,7 @@ public function update(Request $request, $id)
     public function destroy($id)
     {
         Client::findOrFail($id)->delete(); // Procura o cliente pelo ID e Deleta
-        return redirect('/client/search'); // Retorna pra tela anterior atualizando os registros
+        return redirect('/client/search')->with('msg-danger', 'Cliente deletado com sucesso'); // Retorna pra tela anterior atualizando os registros
 
     }
 }

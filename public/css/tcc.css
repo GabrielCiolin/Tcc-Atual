@@ -408,3 +408,98 @@ hr{
     display: flex;
     flex-direction: column;
 }
+
+/*Estilo dos cards de atendimentos*/
+/* Adicione este código ao seu arquivo de estilos CSS */
+
+/* Adicione este código ao seu arquivo de estilos CSS */
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.card-row strong {
+    margin-bottom: 5px;
+}
+
+.card-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+}
+
+.card-description {
+    margin-top: 15px;
+}
+
+.card-observations {
+    margin-top: 15px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.card-actions button {
+    margin-left: 10px;
+}
+
+/* Adicione estilos personalizados conforme necessário */
+
+.alert-success {
+    background-color: rgb(58, 218, 79);
+    border: 1px solid #03721b;
+    color: #1e824c;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.alert-success .close {
+    cursor: pointer;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.alert-danger .close {
+    cursor: pointer;
+}

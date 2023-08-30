@@ -38,7 +38,7 @@
         <div class="form-group">
             <label class="call_form">Selecione o Técnico</label>
             <select id="technician" name="technician_id" class="nice-select">
-                <option data-display="Select">Técnico</option>
+                <option data-display="Select" selected disabled>Técnico</option>
                 @foreach ($users as $user)
                     <option value={{ $user->id }}>{{ $user->first_name }}</option>
                 @endforeach
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label class="call_form">Selecione o Tipo de Atendimento:</label>
-            <select id="type"  class="nice-select" name="service_type"  >
+            <select id="type"  class="nice-select" name="service_type" >
                 <option value="internal">Interno</option>
                 <option value="external">Externo</option>
             </select>
@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <label>Digite informações do Atendimento</label>
-            <textarea name="description_call" class="textarea" rows="10" placeholder="Insira aqui as informações"></textarea>
+            <textarea name="description_call" class="textarea" rows="10" placeholder="Insira aqui as informações" required></textarea>
         </div>
 
         <div class="form-group">

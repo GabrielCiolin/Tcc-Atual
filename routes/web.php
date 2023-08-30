@@ -4,6 +4,7 @@ use App\Http\Controllers\CallController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use Faker\Guesser\Name;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
@@ -55,9 +56,10 @@ Route::middleware('authentication')->controller(ClientController::class)->group(
         Route::get('/user/delete/{id}', 'destroy');
     });
 
-    Route::get('/call/index', [CallController::class, 'index']);
+    Route::get('/call/index', [CallController::class, 'index'])->name('call.index');
     Route::get('/call/search', [CallController::class, 'search']);
     Route::get('/call/add', [CallController::class, 'create']);
     Route::post('/call', [CallController::class, 'store']);
     Route::get('/call/historic', [CallController::class, 'list']);
+
 });

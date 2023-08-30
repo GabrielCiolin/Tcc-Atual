@@ -42,14 +42,7 @@ class UserController extends Controller
     {
 
         $user = new User;
-        // $user->first_name = $request->first_name;
-        // $user->last_name = $request->last_name;
-        // $user->rg = $request->rg;
-        // $user->cpf = $request->cpf;
-        // $user->contact = $request->contact;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
-        // $user->is_admin = $request->is_admin;
+
         $user->fill($request->all());
         $user->save();
 
@@ -62,7 +55,7 @@ class UserController extends Controller
         $user->address()->save($address);
 
 
-        return redirect('/user/search');
+        return redirect('/user/search')->with('msg-success', 'Usuário cadastrado com sucesso!');
     }
 
 
@@ -106,16 +99,12 @@ class UserController extends Controller
 
         return redirect('/user/search')->with('msg', 'Usuário atualizado com sucesso!');
     }
-    // public function update(Request $request)
-    // {
-    //     User::findOrFail($request->id)->update($request->all());
-    //     return redirect('/user/search')->with('msg', 'Usuário atualizado com sucesso!');
-    // }
+
 
     public function destroy($id)
     {
         User::findOrFail($id)->delete(); // Procura o usuário pelo ID e Deleta
-        return redirect('/user/search'); // Retorna pra tela anterior atualizando os registros
+        return redirect('/user/search')->with('msg-danger', 'Usuário deletado com sucesso');; // Retorna pra tela anterior atualizando os registros
 
     }
 }

@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="/css/nice-select2.css">
 
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> --}}
 
 
 
@@ -34,9 +32,9 @@
                 </div>
 
                 <ul class=" item_menu">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/call/index">Home</a></li>
                     <li>
-                        <a href="#">Atendimentos <i class="fas fa-caret-down"></i></a>
+                        <a href="/call/index">Atendimentos <i class="fas fa-caret-down"></i></a>
 
                         <div class="drop_atendimentos">
                             <ul>
@@ -109,6 +107,7 @@
 
         <script src="/js/nice-select2.js"></script>
         @yield('scripts');
+
 
     </footer>
 
